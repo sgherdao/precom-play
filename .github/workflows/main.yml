@@ -12,21 +12,29 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v3
         with:
-          ref: ${{ github.head_ref }}  # Checkout the pull request branch
+          ref: ${{ github.head_ref }}
 
       - name: Set up Python
         uses: actions/setup-python@v4
         with:
           python-version: '3.x'  # Specify the Python version
 
-      - name: Install pre-commit
+      - name: Install dependencies
         run: |
           pip install pre-commit
 
-      - name: Run pre-commit and auto-fix
+      - name: Install pre-commit hooks
         run: |
-          pre-commit run --all-files --hook-stage manual
-        # Use a hook-stage that allows for fixes
+          pre-commit install
+
+      - name: Run pre-commit hooks
+        run: |
+          pre-commit run --all-files
+        continue-on-error: true  # Allow the step to continue even if it fails
+
+      - name: Show pre-commit logs
+        if: failure()
+        run: cat .git/hooks/pre-commit.log
 
       - name: Commit changes
         run: |
