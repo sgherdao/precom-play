@@ -1,12 +1,6 @@
 import base64
 import re
 
-while       True:
+while True:
 
-    print(
-
-        "Enter your input:"
-
-
-          )
-
+    print("Enter your input:")
