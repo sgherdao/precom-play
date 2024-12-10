@@ -1,0 +1,37 @@
+repos:
+  - repo: local
+    hooks:
+      - id: format_yang
+        name: format_yang
+        description: format_yang
+        entry: format_yang.sh
+        pass_filenames: true
+        language: script
+        verbose: true
+        log_file: /tmp/ya.log
+        types: [yang]
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v5.0.0
+    hooks:
+      - id: check-yaml
+      - id: end-of-file-fixer
+      - id: trailing-whitespace
+      - id: pretty-format-json
+        args: [--no-sort-keys, --autofix]
+  - repo: https://github.com/psf/black
+    rev: 24.10.0
+    hooks:
+      - id: black
+  - repo: https://github.com/pycqa/isort
+    rev: 5.13.2
+    hooks:
+      - id: isort
+  - repo: https://github.com/google/yamlfmt
+    rev: v0.14.0
+    hooks:
+      - id: yamlfmt
+        name: yamlfmt
+        description: This hook uses github.com/google/yamlfmt to format yaml files. Requires golang >1.18 to be installed.
+        entry: yamlfmt
+        language: golang
+        types: [yaml]
