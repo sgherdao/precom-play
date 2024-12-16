@@ -1,0 +1,25 @@
+name: Pre-commit
+on:
+  pull_request:
+    branches:
+      - main # Specify the target branch for pull requests
+jobs:
+  pre-commit:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+        with:
+          ref: ${{ github.head_ref }} # Checkout the pull request branch
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.x' # Specify the Python version
+      - name: Install pre-commit
+        run: |
+          pip install setuptools
+          pip install pre-commit
+          pip install pyang
+      - name: Run pre-commit and auto-fix
+        run: |
+          pre-commit run --all-files --hook-stage manual --verbose

@@ -1,0 +1,36 @@
+exclude: resource-manager/
+repos:
+  - repo: local
+    hooks:
+      - id: format_yang
+        name: format_yang
+        description: format_yang
+        entry: ./format_yang.sh
+        language: script
+        verbose: false
+        types: [yang]
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v5.0.0
+    hooks:
+      - id: check-yaml
+      - id: end-of-file-fixer
+      - id: trailing-whitespace
+      - id: pretty-format-json
+        args: [--no-sort-keys, --autofix]
+  - repo: https://github.com/psf/black
+    rev: 24.10.0
+    hooks:
+      - id: black
+  - repo: https://github.com/pycqa/isort
+    rev: 5.13.2
+    hooks:
+      - id: isort
+  - repo: https://github.com/google/yamlfmt
+    rev: v0.14.0
+    hooks:
+      - id: yamlfmt
+  # - repo: https://github.com/pamoller/xmlformatter
+  #   rev: v0.2.8
+  #   hooks:
+  #     - id: xml-formatter
+  #       args: [--selfclose, --overwrite, --eof-newline]
