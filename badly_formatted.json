@@ -1,0 +1,27 @@
+{
+  "name": "Alice",
+  "age": 25,
+  "city": "New York",
+  "skills": [
+    "Python",
+    "Data Analysis",
+    "Machine Learning"
+  ],
+  "education": {
+    "degree": "Masters",
+    "field": "Computer Science",
+    "year": 2020
+  },
+  "experience": [
+    {
+      "company": "TechCorp",
+      "role": "Data Scientist",
+      "years": 2
+    },
+    {
+      "company": "WebSoft",
+      "role": "Software Engineer",
+      "years": 3
+    }
+  ]
+}
